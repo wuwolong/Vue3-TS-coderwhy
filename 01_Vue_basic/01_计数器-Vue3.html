@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <!-- 
+      引入方式可以用script标签src引入cdn
+      也可以下载到本地
+  
+
+     -->
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        }
+      }
+    </script>
+    <div id="app"></div>
+    <script type="module">
+      // import { createApp, ref } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+      import { createApp, ref } from 'vue'
+      createApp({
+        template: `
+          <h1>{{count}}</h1>
+          <button @click='add'>+1</button>
+          <button @click='sub'>-1</button>
+        `,
+        setup() {
+          const count = ref(0)
+          function add() {
+            count.value++
+          }
+          function sub() {
+            count.value--
+          }
+          return {
+            count,
+            add,
+            sub,
+          }
+        },
+      }).mount('#app')
+    </script>
+  </body>
+</html>
