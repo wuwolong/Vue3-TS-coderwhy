@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app"></div>
+    <template id="noah">
+      <div>{{message}}</div>
+      <div>
+        <li v-for="(item) in listData" ::key="item.id">{{item.title}}</li>
+      </div>
+    </template>
+    <script>
+      // http://jsonplaceholder.typicode.com/photos
+      const { createApp, ref } = Vue
+      createApp({
+        template: `#noah`,
+        setup() {
+          const message = ref('hello world')
+          const listData = ref([])
+          function response(data) {
+            const len = data.length
+            const chunk = data.splice(0, Math.min(100, len))
+            listData.value.push(...chunk)
+            // console.log(chunk)
+            // console.log(res)
+            if (data.length > 0) {
+              setTimeout(function () {
+                response(data)
+              }, 100)
+            }
+          }
+          fetch('http://jsonplaceholder.typicode.com/photos').then((res) => {
+            res.json().then(response)
+          })
+          return {
+            message,
+            listData,
+          }
+        },
+      }).mount('#app')
+    </script>
+  </body>
+</html>
