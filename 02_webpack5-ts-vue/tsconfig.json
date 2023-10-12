@@ -105,6 +105,19 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
-  }
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "baseUrl": "./", // 这里需要配置
+    "paths": {
+      "@/*": ["./src/*"] // 这里需要配置
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "auto-imports.d.ts",
+    "**/*.d.ts"
+  ],
+  "exclude": ["node_modules"]
 }

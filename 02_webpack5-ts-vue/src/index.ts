@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
-// ts-ignore
-import App from './App.vue'
+import { createApp } from "vue";
+import "@/App.scss";
+import App from "./App.vue";
 
-createApp(App).mount('#app')
+createApp(App).mount("#app");
