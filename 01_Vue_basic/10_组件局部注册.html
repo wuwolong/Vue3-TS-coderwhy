@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app"></div>
+    <template id="noah">
+      <div>{{message}}</div>
+      <component-a :title="title" v-model="message"></component-a>
+    </template>
+    <template id="componentA">
+      <h1>componentA</h1>
+      <div>{{msg}}</div>
+      <h1>{{title}}</h1>
+      <input type="text" @input="emitVModel" />
+    </template>
+    <script>
+      const { createApp, ref } = Vue
+      const componentA = {
+        template: '#componentA',
+        props: {
+          title: {
+            type: String,
+          },
+          modelValue: {
+            type: String,
+          },
+        },
+        emits: ['update:model-value'],
+        setup(props, ctx) {
+          const msg = ref('componentA')
+          function emitVModel(e) {
+            ctx.emit('update:model-value', e.target.value)
+          }
+          return { msg, emitVModel }
+        },
+      }
+      const app = createApp({
+        template: `#noah`,
+        components: { componentA },
+        setup() {
+          const message = ref('hello world')
+          const title = ref('componentA-title')
+          return {
+            message,
+            title,
+          }
+        },
+      })
+      // app.component('componentA', componentA)
+      app.mount('#app')
+    </script>
+  </body>
+</html>

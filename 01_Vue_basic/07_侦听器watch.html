@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app"></div>
+    <template id="noah">
+      <div>{{message}}</div>
+      <input v-model="question" type="text" />
+      <p>{{answer}}</p>
+    </template>
+    <script>
+      const { createApp, ref, watch, reactive } = Vue
+      createApp({
+        template: `#noah`,
+        setup() {
+          const message = ref('hello world')
+          const question = ref('')
+          const answer = ref('')
+          const obj = ref({ count: 1 })
+          watch(question, async (newValue, oldVale) => {
+            if (newValue.indexOf('?') > -1) {
+              answer.value = 'thing'
+            }
+            try {
+              const res = await fetch('https://yesno.wtf/api')
+              answer.value = (await res.json()).answer
+            } catch (error) {
+              answer.value = 'Error! Could not reach the API. ' + error
+            }
+          })
+          // 给watch直接传入一个响应式对象,无论是ref还是reactive,默认就是深度监听的
+          // watch(obj, () => {
+          //   console.log(obj.count)
+          // })
+          // getter函数返回值为一个响应式对象时默认不是deep,需要开启深度监听
+          // 立即回调
+          watch(
+            () => obj.value,
+            () => {
+              console.log(obj.value.count)
+            },
+            { deep: true, immediate: true }
+          )
+          obj.value.count++
+          return {
+            message,
+            question,
+            answer,
+          }
+        },
+      }).mount('#app')
+    </script>
+  </body>
+</html>
