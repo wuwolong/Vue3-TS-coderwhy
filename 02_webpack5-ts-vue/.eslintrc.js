@@ -22,5 +22,7 @@ module.exports = {
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-var-requires": "off",
     "no-undef": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "no-unused-vars": "off",
   },
 };
