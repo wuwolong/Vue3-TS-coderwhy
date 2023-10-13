@@ -1,7 +1,9 @@
 const { merge } = require('webpack-merge')
 const baseConfig = require('./webpack.base.js')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 module.exports = merge(baseConfig, {
-  mode: 'production',
+  mode: 'development',
   optimization: {
     splitChunks: {
       // 选择对哪些文件进行拆分，默认是async，即只对动态导入的文件进行拆分
@@ -27,4 +29,13 @@ module.exports = merge(baseConfig, {
       },
     },
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'style/[name][hash:8].css',
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'disabled',
+      generateStatsFile: true,
+    }),
+  ],
 })
