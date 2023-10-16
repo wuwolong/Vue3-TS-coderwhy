@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge')
 const baseConfig = require('./webpack.base.js')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = merge(baseConfig, {
   mode: 'development',
   optimization: {
@@ -36,6 +37,10 @@ module.exports = merge(baseConfig, {
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
       generateStatsFile: true,
+    }),
+    new CopyWebpackPlugin({
+      // from后的路径是相对于项目的根目录，to后的路径是相对于打包后的dist目录
+      patterns: [{ from: './public', to: './public' }],
     }),
   ],
 })

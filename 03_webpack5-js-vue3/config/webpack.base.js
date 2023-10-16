@@ -27,6 +27,7 @@ module.exports = {
     new DefinePlugin({
       __VUE_OPTIONS_API__: false,
       __VUE_PROD_DEVTOOLS__: false,
+      BASE_URL: "'./'",
     }),
     new HtmlWebpackPlugin({
       title: 'webpack5-js-vue3',

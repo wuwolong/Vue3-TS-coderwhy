@@ -1,0 +1,1 @@
+{"version":3,"file":"style/main804c5aba.css","mappings":";;;AAAA;EACE;EACA;KAAA;UAAA;AACF;;;;;ACFA;EACE;AAAF","sources":["webpack://03_webpack5-js-vue3/./src/style/style.less","webpack://03_webpack5-js-vue3/./src/App.vue"],"sourcesContent":[".title {\n  color: #123456;\n  user-select: none;\n}\n","\nh1 {\n  color: red;\n}\n"],"names":[],"sourceRoot":""}
