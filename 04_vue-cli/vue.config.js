@@ -4,4 +4,5 @@ module.exports = defineConfig({
   devServer: {
     open: true,
   },
+  publicPath: './',
 })

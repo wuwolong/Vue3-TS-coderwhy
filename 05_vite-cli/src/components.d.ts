@@ -7,16 +7,24 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Component: typeof import('./components/component/component.vue')['default']
+    AsyncComponent: typeof import('./components/AsyncComponent.vue')['default']
     ComponentA: typeof import('./components/component/component-a.vue')['default']
     ComponentB: typeof import('./components/component/component-b.vue')['default']
+    Computed: typeof import('./components/reactive/computed.vue')['default']
     CursorPositon: typeof import('./components/slot/cursor-positon.vue')['default']
+    CustomRef: typeof import('./components/reactive/customRef.vue')['default']
     DefaultSlot: typeof import('./components/slot/default-slot.vue')['default']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
+    Drag: typeof import('./components/drag/drag.vue')['default']
+    ListDrag: typeof import('./components/drag/list-drag.vue')['default']
     NameSlot: typeof import('./components/slot/name-slot.vue')['default']
+    Reactive: typeof import('./components/reactive/reactive.vue')['default']
+    Ref: typeof import('./components/reactive/ref.vue')['default']
     ScopeNameSlot: typeof import('./components/slot/scope-name-slot.vue')['default']
     TabContolContent: typeof import('./base-ui/tab-control/tab-contol-content.vue')['default']
     TabControl: typeof import('./base-ui/tab-control/index.vue')['default']
     TabControlItem: typeof import('./base-ui/tab-control/tab-control-item.vue')['default']
+    ToRefs: typeof import('./components/reactive/toRefs.vue')['default']
+    Watch: typeof import('./components/reactive/watch.vue')['default']
+    WatchEffect: typeof import('./components/reactive/watchEffect.vue')['default']
   }
 }

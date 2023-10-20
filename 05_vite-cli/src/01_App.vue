@@ -22,6 +22,9 @@ function handleChangeCurrentIndex(index) {
 provide('currentIndex', { currentIndex, handleChangeCurrentIndex })
 const slotA = ref('name-slot')
 const view = shallowRef(ComponentA)
+const asyncCpn = defineAsyncComponent(() =>
+  import('@/components/AsyncComponent.vue')
+)
 </script>
 
 <template>
@@ -62,6 +65,8 @@ const view = shallowRef(ComponentA)
   </CursorPositon>
   <component :is="ComponentA" />
   <component is="div" />
+  <asyncCpn></asyncCpn>
+  <Drag></Drag>
 </template>
 
 <style scoped></style>
